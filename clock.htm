@@ -1,0 +1,173 @@
+<html>
+<head>
+	<title>CSS3 Clock</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		.clock {
+			width: 200px;
+			height: 200px;
+			margin: auto;
+			background-color: #09C;
+			border-radius: 50%;
+			padding: 5px;
+
+			position: relative;
+			top: 50%;
+			margin-top: -100px;
+		}
+		.face {
+			width: 190px;
+			height: 190px;
+			background-color: #FFF;
+			border-radius: 50%;
+			position: relative;
+		}
+		.pin {
+			width: 6px;
+			height: 6px;
+			background-color: #000;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			margin-top: -3px;
+			left: 50%;
+			margin-left: -3px;
+			z-index: 1;
+		}
+		.hand {
+			position: absolute;
+		}
+		.hour-hand {
+			width: 6px;
+			height: 50px;
+			margin-top: -50px;
+			background-color: #09C;
+			left: 50%;
+			margin-left: -3px;
+			top: 50%;
+			-webkit-transform-origin: 3px 100%;
+		}
+		.min-hand {
+			width: 4px;
+			height: 80px;
+			margin-top: -80px;
+			background-color: #F0F;
+			left: 50%;
+			margin-left: -2px;
+			top: 50%;
+			-webkit-transform-origin: 2px 100%;
+		}
+		.sec-hand {
+			width: 2px;
+			height: 80px;
+			margin-top: -80px;
+			background-color: #0F0;
+			left: 50%;
+			margin-left: -1px;
+			top: 50%;
+			-webkit-transform-origin: 1px 100%;
+		}
+
+		.hand[data-hour="1"] { -webkit-transform: rotate(30deg); }
+		.hand[data-hour="2"] { -webkit-transform: rotate(60deg); }
+		.hand[data-hour="3"] { -webkit-transform: rotate(90deg); }
+		.hand[data-hour="4"] { -webkit-transform: rotate(120deg); }
+		.hand[data-hour="5"] { -webkit-transform: rotate(150deg); }
+		.hand[data-hour="6"] { -webkit-transform: rotate(180deg); }
+		.hand[data-hour="7"] { -webkit-transform: rotate(210deg); }
+		.hand[data-hour="8"] { -webkit-transform: rotate(240deg); }
+		.hand[data-hour="9"] { -webkit-transform: rotate(270deg); }
+		.hand[data-hour="10"] { -webkit-transform: rotate(300deg); }
+		.hand[data-hour="11"] { -webkit-transform: rotate(330deg); }
+		.hand[data-hour="12"] { -webkit-transform: rotate(360deg); }
+
+		.hand[data-min="1"], .hand[data-sec="1"] { -webkit-transform: rotate(6deg); }
+		.hand[data-min="2"], .hand[data-sec="2"] { -webkit-transform: rotate(12deg); }
+		.hand[data-min="3"], .hand[data-sec="3"] { -webkit-transform: rotate(18deg); }
+		.hand[data-min="4"], .hand[data-sec="4"] { -webkit-transform: rotate(24deg); }
+		.hand[data-min="5"], .hand[data-sec="5"] { -webkit-transform: rotate(30deg); }
+		.hand[data-min="6"], .hand[data-sec="6"] { -webkit-transform: rotate(36deg); }
+		.hand[data-min="7"], .hand[data-sec="7"] { -webkit-transform: rotate(42deg); }
+		.hand[data-min="8"], .hand[data-sec="8"] { -webkit-transform: rotate(48deg); }
+		.hand[data-min="9"], .hand[data-sec="9"] { -webkit-transform: rotate(54deg); }
+		.hand[data-min="10"], .hand[data-sec="10"] { -webkit-transform: rotate(60deg); }
+		.hand[data-min="11"], .hand[data-sec="11"] { -webkit-transform: rotate(66deg); }
+		.hand[data-min="12"], .hand[data-sec="12"] { -webkit-transform: rotate(72deg); }
+		.hand[data-min="13"], .hand[data-sec="13"] { -webkit-transform: rotate(78deg); }
+		.hand[data-min="14"], .hand[data-sec="14"] { -webkit-transform: rotate(84deg); }
+		.hand[data-min="15"], .hand[data-sec="15"] { -webkit-transform: rotate(90deg); }
+		.hand[data-min="16"], .hand[data-sec="16"] { -webkit-transform: rotate(96deg); }
+		.hand[data-min="17"], .hand[data-sec="17"] { -webkit-transform: rotate(102deg); }
+		.hand[data-min="18"], .hand[data-sec="18"] { -webkit-transform: rotate(108deg); }
+		.hand[data-min="19"], .hand[data-sec="19"] { -webkit-transform: rotate(114deg); }
+		.hand[data-min="20"], .hand[data-sec="20"] { -webkit-transform: rotate(120deg); }
+		.hand[data-min="21"], .hand[data-sec="21"] { -webkit-transform: rotate(126deg); }
+		.hand[data-min="22"], .hand[data-sec="22"] { -webkit-transform: rotate(132deg); }
+		.hand[data-min="23"], .hand[data-sec="23"] { -webkit-transform: rotate(138deg); }
+		.hand[data-min="24"], .hand[data-sec="24"] { -webkit-transform: rotate(144deg); }
+		.hand[data-min="25"], .hand[data-sec="25"] { -webkit-transform: rotate(150deg); }
+		.hand[data-min="26"], .hand[data-sec="26"] { -webkit-transform: rotate(156deg); }
+		.hand[data-min="27"], .hand[data-sec="27"] { -webkit-transform: rotate(162deg); }
+		.hand[data-min="28"], .hand[data-sec="28"] { -webkit-transform: rotate(168deg); }
+		.hand[data-min="29"], .hand[data-sec="29"] { -webkit-transform: rotate(174deg); }
+		.hand[data-min="30"], .hand[data-sec="30"] { -webkit-transform: rotate(180deg); }
+		.hand[data-min="31"], .hand[data-sec="31"] { -webkit-transform: rotate(186deg); }
+		.hand[data-min="32"], .hand[data-sec="32"] { -webkit-transform: rotate(192deg); }
+		.hand[data-min="33"], .hand[data-sec="33"] { -webkit-transform: rotate(198deg); }
+		.hand[data-min="34"], .hand[data-sec="34"] { -webkit-transform: rotate(204deg); }
+		.hand[data-min="35"], .hand[data-sec="35"] { -webkit-transform: rotate(210deg); }
+		.hand[data-min="36"], .hand[data-sec="36"] { -webkit-transform: rotate(216deg); }
+		.hand[data-min="37"], .hand[data-sec="37"] { -webkit-transform: rotate(222deg); }
+		.hand[data-min="38"], .hand[data-sec="38"] { -webkit-transform: rotate(228deg); }
+		.hand[data-min="39"], .hand[data-sec="39"] { -webkit-transform: rotate(234deg); }
+		.hand[data-min="40"], .hand[data-sec="40"] { -webkit-transform: rotate(240deg); }
+		.hand[data-min="41"], .hand[data-sec="41"] { -webkit-transform: rotate(246deg); }
+		.hand[data-min="42"], .hand[data-sec="42"] { -webkit-transform: rotate(252deg); }
+		.hand[data-min="43"], .hand[data-sec="43"] { -webkit-transform: rotate(258deg); }
+		.hand[data-min="44"], .hand[data-sec="44"] { -webkit-transform: rotate(264deg); }
+		.hand[data-min="45"], .hand[data-sec="45"] { -webkit-transform: rotate(270deg); }
+		.hand[data-min="46"], .hand[data-sec="46"] { -webkit-transform: rotate(276deg); }
+		.hand[data-min="47"], .hand[data-sec="47"] { -webkit-transform: rotate(282deg); }
+		.hand[data-min="48"], .hand[data-sec="48"] { -webkit-transform: rotate(288deg); }
+		.hand[data-min="49"], .hand[data-sec="49"] { -webkit-transform: rotate(294deg); }
+		.hand[data-min="50"], .hand[data-sec="50"] { -webkit-transform: rotate(300deg); }
+		.hand[data-min="51"], .hand[data-sec="51"] { -webkit-transform: rotate(306deg); }
+		.hand[data-min="52"], .hand[data-sec="52"] { -webkit-transform: rotate(312deg); }
+		.hand[data-min="53"], .hand[data-sec="53"] { -webkit-transform: rotate(318deg); }
+		.hand[data-min="54"], .hand[data-sec="54"] { -webkit-transform: rotate(324deg); }
+		.hand[data-min="55"], .hand[data-sec="55"] { -webkit-transform: rotate(330deg); }
+		.hand[data-min="56"], .hand[data-sec="56"] { -webkit-transform: rotate(336deg); }
+		.hand[data-min="57"], .hand[data-sec="57"] { -webkit-transform: rotate(342deg); }
+		.hand[data-min="58"], .hand[data-sec="58"] { -webkit-transform: rotate(348deg); }
+		.hand[data-min="59"], .hand[data-sec="59"] { -webkit-transform: rotate(354deg); }
+		.hand[data-min="60"], .hand[data-sec="60"] { -webkit-transform: rotate(360deg); }
+	</style>
+</head>
+<body>
+	<div class="clock">
+		<div class="face">
+			<span class="pin"></span>
+			<span id="hour" class="hour-hand hand"></span>
+			<span id="min" class="min-hand hand"></span>
+			<span id="sec" class="sec-hand hand"></span>
+		</div>
+	</div>
+	<script>
+	changeTime();
+	var t = setTimeout(function() { changeTime(); }, 1000);
+	function changeTime() {
+		"use strict";
+		var date = new Date(),
+			hour = document.getElementById('hour'),
+			min = document.getElementById('min'),
+			sec = document.getElementById('sec');
+		hour.dataset.hour = (date.getHours() > 12 ? (date.getHours() - 12) : date.getHours());
+		min.dataset.min = date.getMinutes();
+		sec.dataset.sec = date.getSeconds();
+		t = setTimeout(function() { changeTime(); }, 1000);
+	}
+	</script>
+</body>
+</html>
